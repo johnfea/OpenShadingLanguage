@@ -182,10 +182,15 @@ public:
     {
         return &m_batch_8_rs;
     }
+    OSL::BatchedRendererServices<4>* batched(OSL::WidthOf<4>) override
+    {
+        return &m_batch_4_rs;
+    }
 
 private:
     MyBatchedRendererServices<16> m_batch_16_rs;
     MyBatchedRendererServices<8> m_batch_8_rs;
+    MyBatchedRendererServices<4> m_batch_4_rs;
 };
 
 
