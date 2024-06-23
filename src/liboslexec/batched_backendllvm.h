@@ -98,9 +98,10 @@ public:
     /// performed if cast is the default of UNKNOWN).
     llvm::Value* llvm_load_value(const Symbol& sym, int deriv,
                                  llvm::Value* arrayindex, int component,
-                                 TypeDesc cast         = TypeDesc::UNKNOWN,
-                                 bool op_is_uniform    = true,
-                                 bool index_is_uniform = true);
+                                 TypeDesc cast           = TypeDesc::UNKNOWN,
+                                 bool op_is_uniform      = true,
+                                 bool index_is_uniform   = true,
+                                 bool always_ustringhash = false);
 
 
     /// Given an llvm::Value* of a pointer (and the type of the data

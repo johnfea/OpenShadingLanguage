@@ -3533,12 +3533,27 @@ LLVM_Util::constant(ustring s)
     }
 }
 
+llvm::Value*
+LLVM_Util::constant_ustringhash(ustring s)
+{
+    const size_t size_t_bits = sizeof(size_t) * 8;
+    size_t p = s.hash();
+    auto str = (size_t_bits == 64) ? constant64(uint64_t(p)) : constant(int(p));
+    return str;
+}
+
 
 
 llvm::Value*
 LLVM_Util::wide_constant(ustring s)
 {
     return builder().CreateVectorSplat(m_vector_width, constant(s));
+}
+
+llvm::Value*
+LLVM_Util::wide_constant_ustringhash(ustring s)
+{
+    return builder().CreateVectorSplat(m_vector_width, constant_ustringhash(s));
 }
 
 

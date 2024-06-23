@@ -718,6 +718,7 @@ public:
     /// Return an llvm::Value holding the given string constant (as
     /// determined by the ustring_rep).
     llvm::Value* constant(ustring s);
+    llvm::Value* constant_ustringhash(ustring s);
     llvm::Value* constant(string_view s) { return constant(ustring(s)); }
 
     llvm::Constant* constant_array(cspan<llvm::Constant*> constants);
@@ -750,6 +751,7 @@ public:
     llvm::Constant* wide_constant(size_t i);
     llvm::Constant* wide_constant_bool(bool b);
     llvm::Value* wide_constant(ustring s);
+    llvm::Value* wide_constant_ustringhash(ustring s);
     llvm::Value* wide_constant(string_view s)
     {
         return wide_constant(ustring(s));

@@ -715,7 +715,8 @@ llvm::Value*
 BatchedBackendLLVM::llvm_load_value(const Symbol& sym, int deriv,
                                     llvm::Value* arrayindex, int component,
                                     TypeDesc cast, bool op_is_uniform,
-                                    bool index_is_uniform)
+                                    bool index_is_uniform,
+                                    bool always_ustringhash)
 {
     // A uniform symbol can be broadcast into a varying value.
     // But a varying symbol can NOT be loaded into a uniform value.
@@ -780,9 +781,15 @@ BatchedBackendLLVM::llvm_load_value(const Symbol& sym, int deriv,
         if (sym.typespec().is_string()) {
             ustring string_val = sym.get_string();
             if (op_is_uniform) {
-                return ll.constant(string_val);
+                if (!always_ustringhash)
+                    return ll.constant(string_val);
+                else
+                    return ll.constant_ustringhash(string_val);
             } else {
-                return ll.wide_constant(string_val);
+                if (!always_ustringhash)
+                    return ll.wide_constant(string_val);
+                else
+                    return ll.wide_constant_ustringhash(string_val);
             }
         }
         OSL_ASSERT(0 && "unhandled constant type");

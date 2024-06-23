@@ -7429,11 +7429,10 @@ LLVMGEN(llvm_gen_closure)
                     // widened, so our typical op_is_uniform doesn't do what we
                     // want for this when loading.  So just pass arg_is_uniform
                     // which will avoid widening any uniform arguments.
-                    llvm::Value* loaded
-                        = rop.llvm_load_value(sym, 0, arrind, c,
-                                              TypeDesc::UNKNOWN,
-                                              /*op_is_uniform*/ arg_is_uniform,
-                                              /*index_is_uniform*/ true);
+                    llvm::Value* loaded = rop.llvm_load_value(
+                        sym, 0, arrind, c, TypeDesc::UNKNOWN,
+                        /*op_is_uniform*/ arg_is_uniform,
+                        /*index_is_uniform*/ true, /*always_stringhash*/ true);
 
                     if (!arg_is_uniform) {
                         loaded = rop.ll.op_extract(loaded, lane_index);
