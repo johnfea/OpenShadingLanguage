@@ -16,6 +16,45 @@
 
 #include <OpenImageIO/fmath.h>
 
+// Fix dependencies to potentially very recent GLIBC versions from basic math functions
+#ifdef __unix__
+__asm__(".symver exp,exp@GLIBC_2.2.5");
+__asm__(".symver exp2,exp2@GLIBC_2.2.5");
+__asm__(".symver log,log@GLIBC_2.2.5");
+__asm__(".symver log2,log2@GLIBC_2.2.5");
+__asm__(".symver log10,log10@GLIBC_2.2.5");
+__asm__(".symver log,log@GLIBC_2.2.5");
+__asm__(".symver sin,sin@GLIBC_2.2.5");
+__asm__(".symver cos,cos@GLIBC_2.2.5");
+__asm__(".symver tan,tan@GLIBC_2.2.5");
+__asm__(".symver sinh,sinh@GLIBC_2.2.5");
+__asm__(".symver cosh,cosh@GLIBC_2.2.5");
+__asm__(".symver tanh,tanh@GLIBC_2.2.5");
+__asm__(".symver asin,asin@GLIBC_2.2.5");
+__asm__(".symver acos,acos@GLIBC_2.2.5");
+__asm__(".symver atan,atan@GLIBC_2.2.5");
+__asm__(".symver atan2,atan2@GLIBC_2.2.5");
+__asm__(".symver pow,pow@GLIBC_2.2.5");
+
+__asm__(".symver expf,expf@GLIBC_2.2.5");
+__asm__(".symver exp2f,exp2f@GLIBC_2.2.5");
+__asm__(".symver logf,logf@GLIBC_2.2.5");
+__asm__(".symver log2f,log2f@GLIBC_2.2.5");
+__asm__(".symver log10f,log10f@GLIBC_2.2.5");
+__asm__(".symver logf,logf@GLIBC_2.2.5");
+__asm__(".symver sinf,sinf@GLIBC_2.2.5");
+__asm__(".symver cosf,cosf@GLIBC_2.2.5");
+__asm__(".symver tanf,tanf@GLIBC_2.2.5");
+__asm__(".symver sinhf,sinhf@GLIBC_2.2.5");
+__asm__(".symver coshf,coshf@GLIBC_2.2.5");
+__asm__(".symver tanhf,tanhf@GLIBC_2.2.5");
+__asm__(".symver asinf,asinf@GLIBC_2.2.5");
+__asm__(".symver acosf,acosf@GLIBC_2.2.5");
+__asm__(".symver atanf,atanf@GLIBC_2.2.5");
+__asm__(".symver atan2f,atan2f@GLIBC_2.2.5");
+__asm__(".symver powf,powf@GLIBC_2.2.5");
+#endif
+
 
 OSL_NAMESPACE_ENTER
 
